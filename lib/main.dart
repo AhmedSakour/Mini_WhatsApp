@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'features/home/presentation/views/home_view.dart';
+import 'features/app_layout/presentation/view/app_layout_view.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeView(),
+      home: const AppLayoutView(),
     );
   }
 }
