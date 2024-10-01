@@ -39,6 +39,7 @@ dependencies:
   firebase_core:
   flutter_dotenv:
   firebase_auth: 
+  device_preview:
 dev_dependencies:
   flutter_test:
     sdk: flutter
