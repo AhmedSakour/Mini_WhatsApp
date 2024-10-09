@@ -11,7 +11,7 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    goToLogin();
+    // goToLogin();
 
     super.initState();
   }

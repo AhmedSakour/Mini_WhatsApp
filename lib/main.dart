@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'features/app_layout/presentation/view/app_layout_view.dart';
 import 'features/auth/presentation/views/login_view.dart';
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme),
+      ),
       initialRoute: '/',
       routes: {
         '/': (context) => const AppLayoutView(),
