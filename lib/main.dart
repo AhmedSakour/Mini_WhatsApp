@@ -1,8 +1,11 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'features/app_layout/presentation/view/app_layout_view.dart';
+import 'features/auth/presentation/views/login_view.dart';
+import 'features/home/presentation/views/home_view.dart';
+import 'features/splash/presentation/view/splash_view.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -12,11 +15,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(DevicePreview(
-      enabled: true,
-      builder: (context) {
-        return const MyApp();
-      }));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -25,15 +24,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      useInheritedMediaQuery: true,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
+      theme: ThemeData(
+        textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme),
+      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const AppLayoutView(),
+        '/home': (context) => const HomeView(),
+        '/splash': (context) => const SplashView(),
+        '/login': (context) => const LoginView(),
+      },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const AppLayoutView(),
     );
   }
 }
