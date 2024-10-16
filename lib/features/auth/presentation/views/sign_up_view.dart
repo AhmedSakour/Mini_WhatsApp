@@ -1,5 +1,4 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 import 'package:whats_app/features/auth/presentation/views/widget/sign_up_view_body.dart';
 
 class SignUpView extends StatelessWidget {
@@ -7,6 +6,8 @@ class SignUpView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SignUpViewBody();
+    return Scaffold(
+      body: SignUpViewBody(),
+    );
   }
 }

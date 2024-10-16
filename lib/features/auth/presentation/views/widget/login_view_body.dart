@@ -18,8 +18,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SingleChildScrollView(
+    return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Form(
@@ -54,6 +53,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           ),
         ),
       ),
-    ));
+    );
   }
 }

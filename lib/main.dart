@@ -18,7 +18,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(DevicePreview(
-      enabled: true,
+      enabled: false,
       builder: (context) {
         return const MyApp();
       }));

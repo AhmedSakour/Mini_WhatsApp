@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whats_app/core/themes/app_styles.dart';
 
-import '../../../../../core/constant/app_images.dart';
+import '../../../../../core/shared_widget/whats_app_logo_section.dart';
 
 class SplashViewBody extends StatelessWidget {
   const SplashViewBody({super.key});
@@ -11,13 +11,7 @@ class SplashViewBody extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Center(
-            child: Image.asset(
-          Assets.imagesWhatsAppLogo,
-          fit: BoxFit.cover,
-          width: 300,
-          height: 300,
-        )),
+        const WhatsAppLogoSection(),
         Text('WhatsUp', style: AppStyles.styleBold30(context)),
         const SizedBox(
           height: 60,
