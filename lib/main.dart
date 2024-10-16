@@ -1,6 +1,8 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:whats_app/features/auth/presentation/views/sign_up_view.dart';
 
 import 'features/app_layout/presentation/view/app_layout_view.dart';
 import 'features/auth/presentation/views/login_view.dart';
@@ -15,7 +17,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(DevicePreview(
+      enabled: true,
+      builder: (context) {
+        return const MyApp();
+      }));
 }
 
 class MyApp extends StatelessWidget {
@@ -24,6 +30,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      useInheritedMediaQuery: true,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
       theme: ThemeData(
         textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme),
       ),
@@ -33,6 +42,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomeView(),
         '/splash': (context) => const SplashView(),
         '/login': (context) => const LoginView(),
+        '/register': (context) => const SignUpView(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

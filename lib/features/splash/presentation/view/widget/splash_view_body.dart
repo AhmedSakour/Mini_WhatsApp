@@ -18,13 +18,13 @@ class SplashViewBody extends StatelessWidget {
           width: 300,
           height: 300,
         )),
-        Text('WhatsUp', style: AppStyles.styleBold30),
+        Text('WhatsUp', style: AppStyles.styleBold30(context)),
         const SizedBox(
           height: 60,
         ),
         Text(
           'The best chat app for this century',
-          style: AppStyles.styleMedium20,
+          style: AppStyles.styleMedium20(context),
         )
       ],
     );

@@ -40,6 +40,7 @@ dependencies:
   flutter_dotenv:
   firebase_auth: 
   google_fonts: ^4.0.4
+  device_preview: ^1.1.0
   
 dev_dependencies:
   flutter_test:
