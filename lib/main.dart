@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:whats_app/features/auth/presentation/views/sign_up_view.dart';
+import 'package:whats_app/features/chat/presentation/views/chat_view.dart';
 
 import 'features/app_layout/presentation/view/app_layout_view.dart';
 import 'features/auth/presentation/views/login_view.dart';
@@ -18,7 +19,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(DevicePreview(
-      enabled: false,
+      enabled: true,
       builder: (context) {
         return const MyApp();
       }));
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         '/splash': (context) => const SplashView(),
         '/login': (context) => const LoginView(),
         '/register': (context) => const SignUpView(),
+        '/chat': (context) => const ChatView(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
