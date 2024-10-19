@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whats_app/features/chat/presentation/views/widgets/chat_view_body.dart';
 
 import '../../../../core/shared_widget/custom_appBar.dart';
 
@@ -9,6 +10,7 @@ class ChatView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       appBar: CustomAppBar(),
+      body: ChatViewBody(),
     );
   }
 }
