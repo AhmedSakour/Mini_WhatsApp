@@ -46,7 +46,7 @@ class ChatListViewItem extends StatelessWidget {
             children: [
               Text(
                 '12:00 PM',
-                style: AppStyles.styleBold14(context),
+                style: AppStyles.styleRegular16(context),
               ),
               const SizedBox(
                 height: 5,
@@ -60,7 +60,7 @@ class ChatListViewItem extends StatelessWidget {
                       padding: const EdgeInsets.all(2.0),
                       child: Text(
                         '2',
-                        style: AppStyles.styleBold14(context)
+                        style: AppStyles.styleRegular16(context)
                             .copyWith(color: Colors.white),
                       ),
                     )),

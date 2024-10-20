@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whats_app/features/home/presentation/views/home_view.dart';
+import 'package:whats_app/features/status/presentation/views/status_view.dart';
 
 class BottomNavigationBarView extends StatefulWidget {
   const BottomNavigationBarView({super.key});
@@ -12,7 +13,7 @@ class BottomNavigationBarView extends StatefulWidget {
 class _BottomNavigationBarViewState extends State<BottomNavigationBarView> {
   final List<Widget> pages = [
     const HomeView(),
-    Container(),
+    const StatusView(),
     Container(),
   ];
   int selectIndex = 0;

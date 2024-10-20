@@ -14,10 +14,15 @@ abstract class AppStyles {
         fontWeight: FontWeight.bold,
         fontSize: AppStyles.getResponsiveFontSize(context, fontSize: 24),
       );
-  static TextStyle styleBold14(context) => TextStyle(
+  static TextStyle styleRegular16(context) => TextStyle(
         color: Colors.grey,
         fontWeight: FontWeight.w400,
         fontSize: AppStyles.getResponsiveFontSize(context, fontSize: 16),
+      );
+  static TextStyle styleExtrabold19(context) => TextStyle(
+        color: Colors.grey,
+        fontWeight: FontWeight.w800,
+        fontSize: AppStyles.getResponsiveFontSize(context, fontSize: 19),
       );
 
   static TextStyle styleMedium20(context) => TextStyle(
