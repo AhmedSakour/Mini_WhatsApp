@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:whats_app/core/themes/app_theme.dart';
 import 'package:whats_app/features/auth/presentation/views/sign_up_view.dart';
+import 'package:whats_app/features/home/presentation/views/bottom_navigation_bar_view.dart';
 import 'package:whats_app/features/home/presentation/views/home_view.dart';
 
 import 'features/app_layout/presentation/view/app_layout_view.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginView(),
         '/register': (context) => const SignUpView(),
         '/home': (context) => const HomeView(),
+        '/bottomNav': (context) => const BottomNavigationBarView(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

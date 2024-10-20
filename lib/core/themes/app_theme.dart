@@ -14,6 +14,10 @@ class AppTheme {
         color: Colors.black,
         size: 24.0,
       ),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: AppColor.greyColor,
+          elevation: 0,
+          selectedItemColor: AppColor.secondaryColor),
       appBarTheme: AppBarTheme(
         color: AppColor.greyColor,
         elevation: 1.0,

@@ -40,7 +40,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               GestureDetector(
                 onTap: () {
                   if (formKey.currentState!.validate()) {
-                    Navigator.pushNamed(context, '/chat');
+                    Navigator.pushNamed(context, '/bottomNav');
                   }
                 },
                 child: const CustomButton(
