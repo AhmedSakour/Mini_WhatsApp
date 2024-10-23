@@ -33,11 +33,7 @@ class SignUpViewBody extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   if (formKey.currentState!.validate()) {
-<<<<<<< HEAD
-                    Navigator.pushNamed(context, '/chat');
-=======
                     Navigator.pushNamed(context, '/bottomNav');
->>>>>>> status
                   }
                 },
                 child: const CustomButton(
