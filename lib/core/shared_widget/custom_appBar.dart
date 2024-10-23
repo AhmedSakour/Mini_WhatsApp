@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:whats_app/core/themes/colors.dart';
 
 import '../themes/app_styles.dart';
+import 'custom_popupMenuButton.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -22,10 +24,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Icons.search,
           ),
         ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.more_vert),
-        )
+        const CustomPopupMenuButton()
       ],
     );
   }
