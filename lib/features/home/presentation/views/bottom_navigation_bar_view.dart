@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:whats_app/core/shared_widget/custom_appBar.dart';
 import 'package:whats_app/features/calls/presentation/views/calls_view.dart';
 import 'package:whats_app/features/home/presentation/views/home_view.dart';
 import 'package:whats_app/features/status/presentation/views/status_view.dart';
@@ -28,7 +27,6 @@ class _BottomNavigationBarViewState extends State<BottomNavigationBarView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
       body: pages[selectIndex],
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: selectIndex,

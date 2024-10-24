@@ -12,7 +12,9 @@ class CustomPopupMenuButton extends StatelessWidget {
     return PopupMenuButton<String>(
       color: AppColor.greyColor,
       onSelected: (value) {
-        // Handle the menu selection
+        if (value == 'profile') {
+          Navigator.pushNamed(context, '/profile');
+        }
       },
       itemBuilder: (BuildContext context) {
         return [
@@ -25,7 +27,7 @@ class CustomPopupMenuButton extends StatelessWidget {
             child: Text('Profile'),
           ),
           const PopupMenuItem<String>(
-            value: 'log out',
+            value: 'log_out',
             child: Text('Log Out'),
           ),
         ];

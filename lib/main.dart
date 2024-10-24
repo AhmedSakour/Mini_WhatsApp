@@ -5,6 +5,7 @@ import 'package:whats_app/core/themes/app_theme.dart';
 import 'package:whats_app/features/auth/presentation/views/sign_up_view.dart';
 import 'package:whats_app/features/home/presentation/views/bottom_navigation_bar_view.dart';
 import 'package:whats_app/features/home/presentation/views/home_view.dart';
+import 'package:whats_app/features/profile/presentation/views/profile_view.dart';
 
 import 'features/app_layout/presentation/view/app_layout_view.dart';
 import 'features/auth/presentation/views/login_view.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         '/register': (context) => const SignUpView(),
         '/home': (context) => const HomeView(),
         '/bottomNav': (context) => const BottomNavigationBarView(),
+        '/profile': (context) => const ProfileView(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
