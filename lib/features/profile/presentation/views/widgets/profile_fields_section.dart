@@ -8,8 +8,8 @@ class ProfileFieldsSection extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  TextEditingController nameController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
