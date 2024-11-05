@@ -5,8 +5,8 @@ import '../../../../../core/themes/colors.dart';
 
 class LogInSection extends StatelessWidget {
   const LogInSection({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class LogInSection extends StatelessWidget {
           child: Text(
             'Login here',
             style: AppStyles.styleBold24(context)
-                .copyWith(color: AppColor.primaryColor),
+                .copyWith(color: AppColor.primaryColor, fontSize: 18),
           ),
         ),
       ],

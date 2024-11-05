@@ -5,8 +5,8 @@ import '../../../../../core/themes/app_styles.dart';
 
 class CallSection extends StatelessWidget {
   const CallSection({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +25,8 @@ class CallSection extends StatelessWidget {
             borderRadius: BorderRadius.circular(25),
           ),
         ),
-        const SizedBox(
-          width: 20,
+        SizedBox(
+          width: MediaQuery.sizeOf(context).width / 20,
         ),
         Expanded(
           flex: 3,
@@ -37,8 +37,8 @@ class CallSection extends StatelessWidget {
                 'Ahmad Sakour',
                 style: AppStyles.styleBold24(context),
               ),
-              const SizedBox(
-                height: 7,
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height / 99,
               ),
               Text(
                 'Today, 12:00 PM',

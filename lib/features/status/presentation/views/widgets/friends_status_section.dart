@@ -6,9 +6,9 @@ import '../../../../../core/themes/app_styles.dart';
 
 class FriendsStatusSection extends StatelessWidget {
   const FriendsStatusSection({
-    Key? key,
+    super.key,
     required this.isViewed,
-  }) : super(key: key);
+  });
   final bool isViewed;
 
   @override
@@ -31,8 +31,8 @@ class FriendsStatusSection extends StatelessWidget {
                 color: isViewed ? Colors.grey : AppColor.primaryColor,
               )),
         ),
-        const SizedBox(
-          width: 20,
+        SizedBox(
+          width: MediaQuery.sizeOf(context).width / 30,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,8 +41,8 @@ class FriendsStatusSection extends StatelessWidget {
               'Ahmad Sakour',
               style: AppStyles.styleBold24(context),
             ),
-            const SizedBox(
-              height: 7,
+            SizedBox(
+              height: MediaQuery.sizeOf(context).height / 97,
             ),
             Text(
               'Today, 12:00 PM',

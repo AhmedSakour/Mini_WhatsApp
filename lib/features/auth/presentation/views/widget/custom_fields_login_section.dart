@@ -34,8 +34,8 @@ class _CustomFieldsLoginSectionState extends State<CustomFieldsLoginSection> {
             return null;
           },
         ),
-        const SizedBox(
-          height: 40,
+        SizedBox(
+          height: MediaQuery.sizeOf(context).height / 20,
         ),
         CustomTextFormField(
           obscureText: visiblePassword,

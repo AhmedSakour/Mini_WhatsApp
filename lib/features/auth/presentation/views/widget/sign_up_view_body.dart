@@ -11,6 +11,7 @@ class SignUpViewBody extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.sizeOf(context).height;
     return SingleChildScrollView(
       child: Form(
         key: formKey,
@@ -23,12 +24,12 @@ class SignUpViewBody extends StatelessWidget {
                 'Register To New Account',
                 style: AppStyles.styleBold30(context),
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: height / 20,
               ),
               const CustomFieldsRegisterSection(),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: height / 30,
               ),
               GestureDetector(
                 onTap: () {
@@ -40,8 +41,8 @@ class SignUpViewBody extends StatelessWidget {
                   title: 'Sign Up',
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: height / 35,
               ),
               const LogInSection(),
             ],

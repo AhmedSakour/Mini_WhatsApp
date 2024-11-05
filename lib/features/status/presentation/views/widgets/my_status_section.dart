@@ -6,8 +6,8 @@ import '../../../../../core/themes/colors.dart';
 
 class MyStatusSection extends StatelessWidget {
   const MyStatusSection({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +38,8 @@ class MyStatusSection extends StatelessWidget {
             )
           ],
         ),
-        const SizedBox(
-          width: 20,
+        SizedBox(
+          width: MediaQuery.sizeOf(context).width / 30,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,8 +48,8 @@ class MyStatusSection extends StatelessWidget {
               'My Status',
               style: AppStyles.styleBold24(context),
             ),
-            const SizedBox(
-              height: 7,
+            SizedBox(
+              height: MediaQuery.sizeOf(context).height / 87,
             ),
             Text(
               'Tap to add status update',

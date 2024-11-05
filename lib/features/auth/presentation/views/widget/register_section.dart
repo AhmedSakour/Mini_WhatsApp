@@ -5,8 +5,8 @@ import '../../../../../core/themes/colors.dart';
 
 class RegisterSection extends StatelessWidget {
   const RegisterSection({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class RegisterSection extends StatelessWidget {
           child: Text(
             'Register here',
             style: AppStyles.styleBold24(context)
-                .copyWith(color: AppColor.primaryColor),
+                .copyWith(color: AppColor.primaryColor, fontSize: 18),
           ),
         ),
       ],

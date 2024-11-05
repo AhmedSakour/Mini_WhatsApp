@@ -13,8 +13,8 @@ class SplashViewBody extends StatelessWidget {
       children: [
         const WhatsAppLogoSection(),
         Text('WhatsUp', style: AppStyles.styleBold30(context)),
-        const SizedBox(
-          height: 60,
+        SizedBox(
+          height: MediaQuery.sizeOf(context).height / 15,
         ),
         Text(
           'The best chat app for this century',

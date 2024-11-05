@@ -5,14 +5,15 @@ import 'custom_profile_text_form_field.dart';
 
 class ProfileFieldsSection extends StatelessWidget {
   ProfileFieldsSection({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.sizeOf(context).height;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
@@ -22,8 +23,8 @@ class ProfileFieldsSection extends StatelessWidget {
             'Name',
             style: AppStyles.styleExtrabold19(context).copyWith(fontSize: 22),
           ),
-          const SizedBox(
-            height: 10,
+          SizedBox(
+            height: height / 35,
           ),
           CustomProfileTextFormField(
               validator: (value) {
@@ -34,15 +35,15 @@ class ProfileFieldsSection extends StatelessWidget {
               },
               textInputType: TextInputType.name,
               controller: nameController),
-          const SizedBox(
-            height: 30,
+          SizedBox(
+            height: height / 30,
           ),
           Text(
             'Phone',
             style: AppStyles.styleExtrabold19(context).copyWith(fontSize: 22),
           ),
-          const SizedBox(
-            height: 10,
+          SizedBox(
+            height: height / 30,
           ),
           CustomProfileTextFormField(
               validator: (value) {

@@ -10,14 +10,15 @@ class StatusViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.sizeOf(context).height;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: CustomScrollView(
         slivers: [
           const SliverToBoxAdapter(child: MyStatusSection()),
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
               child: SizedBox(
-            height: 30,
+            height: height / 20,
           )),
           SliverToBoxAdapter(
             child: Text(
@@ -25,14 +26,14 @@ class StatusViewBody extends StatelessWidget {
               style: AppStyles.styleExtrabold19(context),
             ),
           ),
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
               child: SizedBox(
-            height: 10,
+            height: height / 40,
           )),
           const RecentFriendsStatusSectionListView(),
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
               child: SizedBox(
-            height: 30,
+            height: height / 35,
           )),
           SliverToBoxAdapter(
             child: Text(
@@ -40,9 +41,9 @@ class StatusViewBody extends StatelessWidget {
               style: AppStyles.styleExtrabold19(context),
             ),
           ),
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
               child: SizedBox(
-            height: 10,
+            height: height / 40,
           )),
           const ViewedFriendsStatusSectionListView(),
         ],

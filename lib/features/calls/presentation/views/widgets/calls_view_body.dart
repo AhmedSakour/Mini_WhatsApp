@@ -18,9 +18,9 @@ class CallsViewBody extends StatelessWidget {
               style: AppStyles.styleExtrabold19(context),
             ),
           ),
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
               child: SizedBox(
-            height: 10,
+            height: MediaQuery.sizeOf(context).height / 30,
           )),
           const CallsSectionListView(),
         ],

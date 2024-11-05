@@ -4,17 +4,15 @@ import '../constant/app_images.dart';
 
 class WhatsAppLogoSection extends StatelessWidget {
   const WhatsAppLogoSection({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Image.asset(
-        Assets.imagesWhatsAppLogo,
-        width: 300,
-        height: 250,
-      ),
+      child: Image.asset(Assets.imagesWhatsAppLogo,
+          width: MediaQuery.sizeOf(context).height / 2,
+          height: MediaQuery.sizeOf(context).width / 1.5),
     );
   }
 }

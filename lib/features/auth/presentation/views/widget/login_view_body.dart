@@ -18,6 +18,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.sizeOf(context).height;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -30,12 +31,12 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 'log in to your account',
                 style: AppStyles.styleBold30(context),
               ),
-              const SizedBox(
-                height: 50,
+              SizedBox(
+                height: height / 20,
               ),
               const CustomFieldsLoginSection(),
-              const SizedBox(
-                height: 50,
+              SizedBox(
+                height: height / 10,
               ),
               GestureDetector(
                 onTap: () {
@@ -47,8 +48,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   title: 'Log In',
                 ),
               ),
-              const SizedBox(
-                height: 50,
+              SizedBox(
+                height: height / 15,
               ),
               const RegisterSection()
             ],

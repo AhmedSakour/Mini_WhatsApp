@@ -18,6 +18,7 @@ class _CustomFieldsRegisterSectionState
   bool visiblePassword = false;
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.sizeOf(context).height;
     return Column(
       children: [
         CustomTextFormField(
@@ -33,8 +34,8 @@ class _CustomFieldsRegisterSectionState
             return null;
           },
         ),
-        const SizedBox(
-          height: 20,
+        SizedBox(
+          height: height / 40,
         ),
         CustomTextFormField(
           label: 'phone',
@@ -49,8 +50,8 @@ class _CustomFieldsRegisterSectionState
             return null;
           },
         ),
-        const SizedBox(
-          height: 20,
+        SizedBox(
+          height: height / 40,
         ),
         CustomTextFormField(
           label: 'email',
@@ -67,8 +68,8 @@ class _CustomFieldsRegisterSectionState
             return null;
           },
         ),
-        const SizedBox(
-          height: 20,
+        SizedBox(
+          height: height / 40,
         ),
         CustomTextFormField(
           obscureText: visiblePassword,
