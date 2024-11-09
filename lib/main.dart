@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:whats_app/core/themes/app_theme.dart';
 import 'package:whats_app/features/auth/presentation/views/sign_up_view.dart';
+import 'package:whats_app/features/chat/presentation/views/chat_view.dart';
 import 'package:whats_app/features/home/presentation/views/bottom_navigation_bar_view.dart';
 import 'package:whats_app/features/home/presentation/views/home_view.dart';
 import 'package:whats_app/features/profile/presentation/views/profile_view.dart';
@@ -32,7 +33,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
       theme: AppTheme.lightTheme(context),
@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomeView(),
         '/bottomNav': (context) => const BottomNavigationBarView(),
         '/profile': (context) => const ProfileView(),
+        '/chat': (context) => const ChatView(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
