@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:whats_app/features/auth/data/models/userModel.dart';
+import 'package:whats_app/features/auth/presentation/views_model/auth_cubit/auth_cubit.dart';
 
 import '../../../../../core/shared_widget/custom_text_form_field.dart';
 
@@ -15,14 +18,21 @@ class _CustomFieldsRegisterSectionState
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  late UserModel userModel;
   bool visiblePassword = false;
+
+  _CustomFieldsRegisterSectionState();
   @override
   Widget build(BuildContext context) {
+    final authCubit = BlocProvider.of<AuthCubit>(context);
     return Column(
       children: [
         CustomTextFormField(
           label: 'name',
           controller: nameController,
+          onFieldSubmitted: (value) {
+            authCubit.userModel.name = value;
+          },
           hint: 'enter your name',
           prefixIcon: Icons.person,
           textInputType: TextInputType.name,
@@ -39,6 +49,9 @@ class _CustomFieldsRegisterSectionState
         CustomTextFormField(
           label: 'phone',
           controller: phoneController,
+          onFieldSubmitted: (value) {
+            authCubit.userModel.phone = value;
+          },
           hint: 'enter your phone',
           prefixIcon: Icons.phone,
           textInputType: TextInputType.phone,
@@ -57,6 +70,9 @@ class _CustomFieldsRegisterSectionState
           controller: emailController,
           hint: 'enter your email',
           prefixIcon: Icons.email,
+          onFieldSubmitted: (value) {
+            authCubit.userModel.email = value;
+          },
           textInputType: TextInputType.emailAddress,
           validator: (value) {
             if (value!.isEmpty) {
@@ -79,6 +95,9 @@ class _CustomFieldsRegisterSectionState
           },
           label: 'password',
           controller: passwordController,
+          onFieldSubmitted: (value) {
+            authCubit.userModel.password = value;
+          },
           hint: 'enter your password',
           prefixIcon: Icons.lock,
           textInputType: TextInputType.visiblePassword,

@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:whats_app/core/functions/service_locator.dart';
 import 'package:whats_app/features/auth/presentation/views/sign_up_view.dart';
 
 import 'features/app_layout/presentation/view/app_layout_view.dart';
@@ -13,7 +14,7 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  //I Hide firebase options file in gitignore
+  setup();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

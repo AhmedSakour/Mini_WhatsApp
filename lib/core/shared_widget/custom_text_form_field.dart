@@ -13,7 +13,8 @@ class CustomTextFormField extends StatelessWidget {
       this.suffixIcon,
       this.suffixFunction,
       required this.validator,
-      required this.label});
+      required this.label,
+      this.onFieldSubmitted});
   final TextEditingController controller;
   final TextInputType textInputType;
   final IconData prefixIcon;
@@ -22,6 +23,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool obscureText;
   final IconData? suffixIcon;
   final Function()? suffixFunction;
+  final Function(String)? onFieldSubmitted;
   final String? Function(String?)? validator;
 
   @override
@@ -29,6 +31,7 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       obscureText: obscureText,
+      onFieldSubmitted: onFieldSubmitted,
       validator: validator,
       keyboardType: textInputType,
       decoration: InputDecoration(
