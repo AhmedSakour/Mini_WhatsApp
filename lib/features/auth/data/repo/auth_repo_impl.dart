@@ -23,10 +23,10 @@ class AuthRepoImpl extends AuhtRepo {
   }
 
   @override
-  Future<Either<Failure, void>> signup(UserModel userModel) async {
+  Future<Either<Failure, void>> signup(UserModel? userModel) async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: userModel.email,
+        email: userModel!.email,
         password: userModel.password,
       );
       return right(null);

@@ -8,14 +8,14 @@ abstract class Failure {
 class FirebaseAuthFailure extends Failure {
   FirebaseAuthFailure(super.errorMessage);
   factory FirebaseAuthFailure.fromFirebaseAuthError(FirebaseException e) {
-    switch (e.message) {
+    switch (e.code) {
       case "ERROR_EMAIL_ALREADY_IN_USE":
       case "account-exists-with-different-credential":
       case "email-already-in-use":
-        return FirebaseAuthFailure("Email already used. Go to login page.");
+        return FirebaseAuthFailure("Email already used.");
       case "ERROR_WRONG_PASSWORD":
       case "wrong-password":
-        return FirebaseAuthFailure("Wrong email/password combination.");
+        return FirebaseAuthFailure("Wrong password .");
 
       case "ERROR_USER_NOT_FOUND":
       case "user-not-found":

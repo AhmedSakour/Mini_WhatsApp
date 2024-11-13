@@ -7,14 +7,16 @@ import 'package:whats_app/features/auth/data/repo/auht_repo.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit(this.auhtRepo) : super(AuthInitial());
+  AuthCubit(
+    this.auhtRepo,
+  ) : super(AuthInitial());
   final AuhtRepo auhtRepo;
-  late UserModel userModel;
+  UserModel? userModel;
+
   Future<void> login() async {
-    var result = await auhtRepo.login(userModel);
+    var result = await auhtRepo.login(userModel!);
     result.fold((f) {
-      print(f.toString());
-      emit(AuthFailure());
+      emit(AuthFailure(f.errorMessage));
     }, (r) {
       emit(AuthSuccess());
     });
@@ -23,8 +25,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signup() async {
     var result = await auhtRepo.signup(userModel);
     result.fold((f) {
-      print(f.toString());
-      emit(AuthFailure());
+      emit(AuthFailure(f.errorMessage));
     }, (r) {
       emit(AuthSuccess());
     });

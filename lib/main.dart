@@ -1,8 +1,13 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:whats_app/core/functions/bloc_observer.dart';
 import 'package:whats_app/core/themes/app_theme.dart';
+import 'package:whats_app/features/auth/data/models/userModel.dart';
+import 'package:whats_app/features/auth/data/repo/auth_repo_impl.dart';
 import 'package:whats_app/features/auth/presentation/views/sign_up_view.dart';
+import 'package:whats_app/features/auth/presentation/views_model/auth_cubit/auth_cubit.dart';
 import 'package:whats_app/features/chat/presentation/views/chat_view.dart';
 import 'package:whats_app/features/home/presentation/views/bottom_navigation_bar_view.dart';
 import 'package:whats_app/features/home/presentation/views/home_view.dart';
@@ -17,13 +22,13 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  Bloc.observer = MyBlocObserver();
   setup();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(DevicePreview(
-      enabled: true,
+      enabled: false,
       builder: (context) {
         return const MyApp();
       }));
