@@ -1,15 +1,15 @@
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:whats_app/core/errors/failures.dart';
 import 'package:whats_app/features/auth/data/models/userModel.dart';
 import 'package:whats_app/features/auth/data/repo/auht_repo.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepoImpl extends AuhtRepo {
   @override
-  Future<Either<Failure, void>> login(UserModel userModel) async {
+  Future<Either<Failure, void>> login(UserModel? userModel) async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: userModel.email,
+        email: userModel!.email,
         password: userModel.password,
       );
       return right(null);

@@ -3,17 +3,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:whats_app/core/functions/bloc_observer.dart';
+import 'package:whats_app/core/functions/service_locator.dart';
 import 'package:whats_app/core/themes/app_theme.dart';
-import 'package:whats_app/features/auth/data/models/userModel.dart';
-import 'package:whats_app/features/auth/data/repo/auth_repo_impl.dart';
 import 'package:whats_app/features/auth/presentation/views/sign_up_view.dart';
-import 'package:whats_app/features/auth/presentation/views_model/auth_cubit/auth_cubit.dart';
 import 'package:whats_app/features/chat/presentation/views/chat_view.dart';
 import 'package:whats_app/features/home/presentation/views/bottom_navigation_bar_view.dart';
 import 'package:whats_app/features/home/presentation/views/home_view.dart';
 import 'package:whats_app/features/profile/presentation/views/profile_view.dart';
-
-import 'package:whats_app/core/functions/service_locator.dart';
 
 import 'features/app_layout/presentation/view/app_layout_view.dart';
 import 'features/auth/presentation/views/login_view.dart';

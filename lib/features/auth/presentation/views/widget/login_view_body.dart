@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:whats_app/core/themes/app_styles.dart';
 import 'package:whats_app/features/auth/presentation/views/widget/register_section.dart';
+import 'package:whats_app/features/auth/presentation/views_model/auth_cubit/auth_cubit.dart';
 
 import '../../../../../core/shared_widget/custom_botton.dart';
 import '../../../../../core/shared_widget/whats_app_logo_section.dart';
@@ -39,9 +41,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 height: height / 10,
               ),
               GestureDetector(
-                onTap: () {
+                onTap: () async {
                   if (formKey.currentState!.validate()) {
-                    Navigator.pushNamed(context, '/bottomNav');
+                    await BlocProvider.of<AuthCubit>(context).login();
                   }
                 },
                 child: const CustomButton(

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:whats_app/features/auth/data/models/userModel.dart';
+import 'package:whats_app/features/auth/presentation/views_model/auth_cubit/auth_cubit.dart';
 
 import '../../../../../core/shared_widget/custom_text_form_field.dart';
 
@@ -16,12 +19,28 @@ class _CustomFieldsLoginSectionState extends State<CustomFieldsLoginSection> {
   final TextEditingController passwordController = TextEditingController();
   bool visiblePassword = false;
   @override
+  void initState() {
+    BlocProvider.of<AuthCubit>(context).userModel = UserModel(
+      email: emailController.text,
+      id: '',
+      name: '',
+      password: passwordController.text,
+      phone: '',
+    );
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final authCubit = BlocProvider.of<AuthCubit>(context);
     return Column(
       children: [
         CustomTextFormField(
           label: 'email',
           controller: emailController,
+          onChanged: (value) {
+            authCubit.userModel?.email = value;
+          },
           hint: 'enter your email',
           prefixIcon: Icons.email,
           textInputType: TextInputType.emailAddress,
@@ -46,6 +65,9 @@ class _CustomFieldsLoginSectionState extends State<CustomFieldsLoginSection> {
           },
           label: 'password',
           controller: passwordController,
+          onChanged: (value) {
+            authCubit.userModel?.password = value;
+          },
           hint: 'enter your password',
           prefixIcon: Icons.lock,
           textInputType: TextInputType.visiblePassword,
