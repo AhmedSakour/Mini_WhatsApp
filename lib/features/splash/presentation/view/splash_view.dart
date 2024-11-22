@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whats_app/core/constant/app_routes.dart';
 import 'package:whats_app/features/splash/presentation/view/widget/splash_view_body.dart';
 
 class SplashView extends StatefulWidget {
@@ -19,7 +20,7 @@ class _SplashViewState extends State<SplashView> {
   void goToLogin() {
     Future.delayed(const Duration(seconds: 3), () {
       try {
-        Navigator.pushNamed(context, '/login');
+        Navigator.pushNamed(context, AppRoutes.login);
       } on Exception {}
     });
   }

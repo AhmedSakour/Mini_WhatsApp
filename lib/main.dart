@@ -2,18 +2,11 @@ import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:whats_app/core/constant/app_routes.dart';
 import 'package:whats_app/core/functions/bloc_observer.dart';
 import 'package:whats_app/core/functions/service_locator.dart';
 import 'package:whats_app/core/themes/app_theme.dart';
-import 'package:whats_app/features/auth/presentation/views/sign_up_view.dart';
-import 'package:whats_app/features/chat/presentation/views/chat_view.dart';
-import 'package:whats_app/features/home/presentation/views/bottom_navigation_bar_view.dart';
-import 'package:whats_app/features/home/presentation/views/home_view.dart';
-import 'package:whats_app/features/profile/presentation/views/profile_view.dart';
 
-import 'features/app_layout/presentation/view/app_layout_view.dart';
-import 'features/auth/presentation/views/login_view.dart';
-import 'features/splash/presentation/view/splash_view.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -39,19 +32,8 @@ class MyApp extends StatelessWidget {
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
       theme: AppTheme.lightTheme(context),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const AppLayoutView(),
-        '/splash': (context) => const SplashView(),
-        '/login': (context) => const LoginView(),
-        '/register': (context) => const SignUpView(),
-        '/home': (context) => const HomeView(),
-        '/bottomNav': (context) => const BottomNavigationBarView(),
-        '/profile': (context) => const ProfileView(),
-        '/chat': (context) => const ChatView(),
-      },
+      routes: AppRoutes.getRoutes(),
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
     );
   }
 }

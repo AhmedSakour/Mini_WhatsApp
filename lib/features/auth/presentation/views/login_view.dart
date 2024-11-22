@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:whats_app/core/constant/app_routes.dart';
 import 'package:whats_app/core/functions/service_locator.dart';
 import 'package:whats_app/features/auth/data/repo/auth_repo_impl.dart';
 import 'package:whats_app/features/auth/presentation/views/widget/login_view_body.dart';
@@ -19,7 +20,7 @@ class LoginView extends StatelessWidget {
               ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBar(content: Text(state.errorMessage)));
             } else {
-              Navigator.pushNamed(context, '/bottomNav');
+              Navigator.pushNamed(context, AppRoutes.nav);
             }
           },
           child: const LoginViewBody(),
