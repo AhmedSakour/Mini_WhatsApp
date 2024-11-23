@@ -5,7 +5,7 @@ import 'package:whats_app/core/errors/failures.dart';
 import 'package:whats_app/features/auth/data/models/user_model.dart';
 import 'package:whats_app/features/auth/data/repo/auht_repo.dart';
 
-class AuthRepoImpl extends AuhtRepo {
+class AuthRepoImpl implements AuhtRepo {
   @override
   Future<Either<Failure, void>> login(UserModel? userModel) async {
     try {
