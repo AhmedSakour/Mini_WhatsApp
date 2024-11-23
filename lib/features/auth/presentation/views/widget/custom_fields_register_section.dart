@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:whats_app/core/functions/random_string.dart';
-import 'package:whats_app/features/auth/data/models/userModel.dart';
+import 'package:whats_app/features/auth/data/models/user_model.dart';
 import 'package:whats_app/features/auth/presentation/views_model/auth_cubit/auth_cubit.dart';
 
 import '../../../../../core/shared_widget/custom_text_form_field.dart';

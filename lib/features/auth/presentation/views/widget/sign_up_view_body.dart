@@ -14,6 +14,7 @@ class SignUpViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;
+    final auhtCubit = BlocProvider.of<AuthCubit>(context);
     return SingleChildScrollView(
       child: Form(
         key: formKey,
@@ -37,7 +38,8 @@ class SignUpViewBody extends StatelessWidget {
                 onTap: () async {
                   if (formKey.currentState!.validate()) {
                     try {
-                      await BlocProvider.of<AuthCubit>(context).signup();
+                      await auhtCubit.signup();
+                      await auhtCubit.addUserToUserCollection();
                     } on Exception catch (e) {
                       // TODO
                     }

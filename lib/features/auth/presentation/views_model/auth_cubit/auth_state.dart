@@ -11,3 +11,11 @@ class AuthFailure extends AuthState {
 
   AuthFailure(this.errorMessage);
 }
+
+class AddUserToUserCollectionSuccess extends AuthState {}
+
+class AddUserToUserCollectionFailure extends AuthState {
+  final String errorMessage;
+
+  AddUserToUserCollectionFailure(this.errorMessage);
+}

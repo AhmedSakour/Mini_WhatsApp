@@ -4,11 +4,13 @@ class UserModel {
   String password;
   String phone;
   String id;
+  String? imageProfile;
 
   UserModel(
       {required this.name,
       required this.email,
       required this.password,
       required this.phone,
-      required this.id});
+      required this.id,
+      this.imageProfile});
 }

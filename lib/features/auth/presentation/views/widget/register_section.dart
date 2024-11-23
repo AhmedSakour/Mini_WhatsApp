@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whats_app/core/constant/app_routes.dart';
 
 import '../../../../../core/themes/app_styles.dart';
 import '../../../../../core/themes/colors.dart';
@@ -19,7 +20,7 @@ class RegisterSection extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, '/register');
+            Navigator.pushNamed(context, AppRoutes.signUp);
           },
           child: Text(
             'Register here',
