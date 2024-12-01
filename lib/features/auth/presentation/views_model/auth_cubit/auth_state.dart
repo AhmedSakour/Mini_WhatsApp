@@ -19,3 +19,11 @@ class AddUserToUserCollectionFailure extends AuthState {
 
   AddUserToUserCollectionFailure(this.errorMessage);
 }
+
+class GetUserFromUserCollectionSuccess extends AuthState {}
+
+class GetUserFromUserCollectionFailure extends AuthState {
+  final String errorMessage;
+
+  GetUserFromUserCollectionFailure(this.errorMessage);
+}

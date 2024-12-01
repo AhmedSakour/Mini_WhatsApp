@@ -37,4 +37,18 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AddUserToUserCollectionSuccess());
     });
   }
+
+  Future<void> getUserFromUserCollection() async {
+    var result = await auhtRepo.getUserFromUserCollection(userModel);
+    result.fold((f) {
+      emit(GetUserFromUserCollectionFailure(f.errorMessage));
+    }, (r) async {
+      userModel = r;
+      emit(GetUserFromUserCollectionSuccess());
+    });
+  }
+
+  Future<void> cachUserInfo() async {
+    await auhtRepo.cachUserInfo(userModel);
+  }
 }

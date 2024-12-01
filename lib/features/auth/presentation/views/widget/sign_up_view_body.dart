@@ -40,6 +40,7 @@ class SignUpViewBody extends StatelessWidget {
                     try {
                       await auhtCubit.signup();
                       await auhtCubit.addUserToUserCollection();
+                      await auhtCubit.cachUserInfo();
                     } on Exception catch (e) {
                       // TODO
                     }

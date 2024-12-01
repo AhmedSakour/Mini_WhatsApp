@@ -21,6 +21,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;
+    final auhtCubit = BlocProvider.of<AuthCubit>(context);
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -43,7 +44,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               GestureDetector(
                 onTap: () async {
                   if (formKey.currentState!.validate()) {
-                    await BlocProvider.of<AuthCubit>(context).login();
+                    await auhtCubit.login();
+                    await auhtCubit.getUserFromUserCollection();
+                    await auhtCubit.cachUserInfo();
                   }
                 },
                 child: const CustomButton(
