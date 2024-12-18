@@ -4,16 +4,16 @@ abstract class HomeState {}
 
 class HomeInitial extends HomeState {}
 
-class GetUsersLoading extends HomeState {}
+class GetChatsLoading extends HomeState {}
 
-class GetUsersSuccess extends HomeState {
-  final List<UserModel> users;
+class GetChatsSuccess extends HomeState {
+  final List<ChatModel> chats;
 
-  GetUsersSuccess(this.users);
+  GetChatsSuccess(this.chats);
 }
 
-class GetUsersFailure extends HomeState {
+class GetChatsFailure extends HomeState {
   final String errorMessage;
 
-  GetUsersFailure(this.errorMessage);
+  GetChatsFailure(this.errorMessage);
 }

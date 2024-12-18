@@ -1,26 +1,30 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:whats_app/features/home/data/models/chat_model.dart';
 
 import '../../../../../core/themes/app_styles.dart';
 import '../../../../../core/themes/colors.dart';
 
 class ChatListViewItem extends StatelessWidget {
   const ChatListViewItem({
-    Key? key,
-  }) : super(key: key);
-
+    super.key,
+    required this.chatModel,
+  });
+  final ChatModel chatModel;
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Expanded(
+        Expanded(
           child: CircleAvatar(
             backgroundColor: Colors.grey,
             radius: 30,
-            child: Icon(
-              Icons.person,
-              color: Colors.white,
-              size: 30,
+            child: CachedNetworkImage(
+              errorWidget: (context, url, error) {
+                return const Icon(Icons.error);
+              },
+              imageUrl: chatModel.image,
             ),
           ),
         ),
@@ -30,11 +34,11 @@ class ChatListViewItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'rowan',
+                chatModel.name,
                 style: AppStyles.styleBold24(context),
               ),
               Text(
-                '#0938605821',
+                chatModel.lastMessage,
                 style: AppStyles.styleMedium20(context),
               ),
             ],
@@ -45,7 +49,7 @@ class ChatListViewItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '12:00 PM',
+                chatModel.lastMessageTime,
                 style: AppStyles.styleRegular16(context),
               ),
               const SizedBox(

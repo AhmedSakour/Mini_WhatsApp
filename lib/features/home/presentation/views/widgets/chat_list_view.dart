@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:whats_app/features/home/data/models/chat_model.dart';
 
 import 'chat_list_view_item.dart';
 
 class ChatListView extends StatelessWidget {
   const ChatListView({
     super.key,
+    required this.chats,
   });
+  final List<ChatModel> chats;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 4,
+      itemCount: chats.length,
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, '/chat');
+                // Navigator.pushNamed(context, AppRoutes.chat);
               },
-              child: const ChatListViewItem()),
+              child: ChatListViewItem(
+                chatModel: chats[index],
+              )),
         );
       },
     );

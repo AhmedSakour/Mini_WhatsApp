@@ -9,6 +9,9 @@ import 'package:whats_app/core/functions/bloc_observer.dart';
 import 'package:whats_app/core/functions/service_locator.dart';
 import 'package:whats_app/core/themes/app_theme.dart';
 import 'package:whats_app/features/auth/data/models/user_model.dart';
+import 'package:whats_app/features/home/data/repos/home_repo_impl.dart';
+import 'package:whats_app/features/home/presentation/view_model/contact_cubit/contact_cubit.dart';
+import 'package:whats_app/features/home/presentation/view_model/home_cubit/home_cubit.dart';
 
 import 'firebase_options.dart';
 
@@ -34,12 +37,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
-      theme: AppTheme.lightTheme(context),
-      routes: AppRoutes.getRoutes(),
-      debugShowCheckedModeBanner: false,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+            create: (context) =>
+                HomeCubit(getIt.get<HomeRepoImpl>())..getChats()),
+        BlocProvider(
+            create: (context) =>
+                ContactCubit(getIt.get<HomeRepoImpl>())..getUsers([])),
+      ],
+      child: MaterialApp(
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
+        theme: AppTheme.lightTheme(context),
+        routes: AppRoutes.getRoutes(),
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }

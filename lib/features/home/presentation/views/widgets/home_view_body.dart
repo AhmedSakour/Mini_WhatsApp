@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:whats_app/features/home/presentation/view_model/home_cubit/home_cubit.dart';
 
 import 'chat_list_view.dart';
 
@@ -7,6 +9,20 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ChatListView();
+    return BlocBuilder<HomeCubit, HomeState>(
+      builder: (context, state) {
+        if (state is GetChatsSuccess) {
+          return ChatListView(
+            chats: state.chats,
+          );
+        } else if (state is GetChatsFailure) {
+          return Center(
+            child: Text(state.errorMessage),
+          );
+        } else {
+          return Container();
+        }
+      },
+    );
   }
 }
