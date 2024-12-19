@@ -14,7 +14,9 @@ class ChatView extends StatelessWidget {
       appBar: CustomChatviewAppbar(
         name: userModel.name,
       ),
-      body: const ChatViewBody(),
+      body: ChatViewBody(
+        id: userModel.id,
+      ),
     );
   }
 }

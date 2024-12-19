@@ -1,9 +1,13 @@
 // app_routes.dart
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:whats_app/core/functions/service_locator.dart';
 import 'package:whats_app/features/app_layout/presentation/view/app_layout_view.dart';
 import 'package:whats_app/features/auth/presentation/views/login_view.dart';
 import 'package:whats_app/features/auth/presentation/views/sign_up_view.dart';
+import 'package:whats_app/features/chat/data/repos/chat_repo/chat_repo_impl.dart';
+import 'package:whats_app/features/chat/presentation/view_model/message_cubit/messages_cubit.dart';
 import 'package:whats_app/features/chat/presentation/views/chat_view.dart';
 import 'package:whats_app/features/home/presentation/views/bottom_navigation_bar_view.dart';
 import 'package:whats_app/features/home/presentation/views/contacts_view.dart';
@@ -30,7 +34,10 @@ class AppRoutes {
       home: (context) => const HomeView(),
       nav: (context) => const BottomNavigationBarView(),
       profile: (context) => const ProfileView(),
-      chat: (context) => const ChatView(),
+      chat: (context) => BlocProvider<MessagesCubit>(
+            create: (context) => MessagesCubit(getIt.get<ChatRepoImpl>()),
+            child: const ChatView(),
+          ),
       contacts: (context) => const ContactsView(),
     };
   }
