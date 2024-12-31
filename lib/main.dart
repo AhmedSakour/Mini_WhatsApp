@@ -40,11 +40,11 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) =>
-                HomeCubit(getIt.get<HomeRepoImpl>())..getChats()),
+          create: (context) => ContactCubit(getIt.get<HomeRepoImpl>()),
+        ),
         BlocProvider(
-            create: (context) =>
-                ContactCubit(getIt.get<HomeRepoImpl>())..getUsers([])),
+          create: (context) => HomeCubit(getIt.get<HomeRepoImpl>()),
+        ),
       ],
       child: MaterialApp(
         locale: DevicePreview.locale(context),

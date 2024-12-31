@@ -15,6 +15,7 @@ class MessagesCubit extends Cubit<MessagesState> {
       emit(GetMessagesFailure(l.errorMessage));
     }, (r) {
       emit(GetMessagesSuccess(r));
+      return r;
     });
   }
 }

@@ -15,7 +15,7 @@ class ChatView extends StatelessWidget {
         name: userModel.name,
       ),
       body: ChatViewBody(
-        id: userModel.id,
+        userModel: userModel,
       ),
     );
   }

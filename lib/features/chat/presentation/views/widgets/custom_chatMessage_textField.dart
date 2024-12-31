@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:whats_app/core/themes/app_styles.dart';
 import 'package:whats_app/core/themes/colors.dart';
+import 'package:whats_app/features/auth/data/models/user_model.dart';
+import 'package:whats_app/features/chat/data/models/message_model.dart';
+import 'package:whats_app/features/chat/presentation/view_model/addMessage_cubit/add_message_cubit.dart';
 
 class CustomChatMessageTextField extends StatelessWidget {
-  const CustomChatMessageTextField({
+  CustomChatMessageTextField({
     super.key,
+    required this.userModel,
+    required this.idUser,
   });
-
+  final UserModel userModel;
+  final String idUser;
+  TextEditingController textEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,6 +42,19 @@ class CustomChatMessageTextField extends StatelessWidget {
                       onPressed: () {}),
                   Expanded(
                     child: TextField(
+                      controller: textEditingController,
+                      onSubmitted: (value) async {
+                        textEditingController.clear();
+                        await BlocProvider.of<AddMessageCubit>(context)
+                            .addMessage(
+                                MessageModel(idSender: idUser, message: value),
+                                UserModel(
+                                    name: userModel.name,
+                                    email: userModel.email,
+                                    password: userModel.password,
+                                    phone: userModel.phone,
+                                    id: userModel.id));
+                      },
                       decoration: InputDecoration(
                           hintText: "Write Something...",
                           hintStyle: AppStyles.styleRegular16(context),

@@ -7,6 +7,7 @@ import 'package:whats_app/features/app_layout/presentation/view/app_layout_view.
 import 'package:whats_app/features/auth/presentation/views/login_view.dart';
 import 'package:whats_app/features/auth/presentation/views/sign_up_view.dart';
 import 'package:whats_app/features/chat/data/repos/chat_repo/chat_repo_impl.dart';
+import 'package:whats_app/features/chat/presentation/view_model/addMessage_cubit/add_message_cubit.dart';
 import 'package:whats_app/features/chat/presentation/view_model/message_cubit/messages_cubit.dart';
 import 'package:whats_app/features/chat/presentation/views/chat_view.dart';
 import 'package:whats_app/features/home/presentation/views/bottom_navigation_bar_view.dart';
@@ -34,10 +35,14 @@ class AppRoutes {
       home: (context) => const HomeView(),
       nav: (context) => const BottomNavigationBarView(),
       profile: (context) => const ProfileView(),
-      chat: (context) => BlocProvider<MessagesCubit>(
-            create: (context) => MessagesCubit(getIt.get<ChatRepoImpl>()),
-            child: const ChatView(),
-          ),
+      chat: (context) => MultiBlocProvider(providers: [
+            BlocProvider(
+              create: (context) => MessagesCubit(getIt.get<ChatRepoImpl>()),
+            ),
+            BlocProvider(
+              create: (context) => AddMessageCubit(getIt.get<ChatRepoImpl>()),
+            )
+          ], child: const ChatView()),
       contacts: (context) => const ContactsView(),
     };
   }

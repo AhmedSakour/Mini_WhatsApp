@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:whats_app/core/themes/app_styles.dart';
 import 'package:whats_app/features/auth/presentation/views/widget/register_section.dart';
 import 'package:whats_app/features/auth/presentation/views_model/auth_cubit/auth_cubit.dart';
+import 'package:whats_app/features/home/presentation/view_model/contact_cubit/contact_cubit.dart';
+import 'package:whats_app/features/home/presentation/view_model/home_cubit/home_cubit.dart';
 
 import '../../../../../core/shared_widget/custom_botton.dart';
 import '../../../../../core/shared_widget/whats_app_logo_section.dart';
@@ -22,6 +24,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;
     final auhtCubit = BlocProvider.of<AuthCubit>(context);
+    final contactCubit = BlocProvider.of<ContactCubit>(context);
+    final homeCubit = BlocProvider.of<HomeCubit>(context);
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -47,6 +51,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     await auhtCubit.login();
                     await auhtCubit.getUserFromUserCollection();
                     await auhtCubit.cachUserInfo();
+                    await contactCubit.getUsers([]);
+                    await homeCubit.getChats();
                   }
                 },
                 child: const CustomButton(

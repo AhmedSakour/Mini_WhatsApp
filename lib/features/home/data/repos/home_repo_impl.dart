@@ -38,38 +38,31 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<Failure, List<ChatModel>>> getChats() async {
     try {
-      // Initialize an empty list to store the chats
       List<ChatModel> chats = [];
-
-      // Get the current user's ID (replace this with your method to retrieve it)
       String currentUserId = await UserInfoCache.getUserId();
 
-      // Query the 'users' collection
-      QuerySnapshot<Map<String, dynamic>> usersSnapshot =
-          await FirebaseFirestore.instance.collection('users').get();
+      QuerySnapshot<Map<String, dynamic>> chatsSnapshot =
+          await FirebaseFirestore.instance
+              .collection('chats')
+              .orderBy('lastMessageTime', descending: true)
+              .get();
+      for (var chatDoc in chatsSnapshot.docs) {
+        List<dynamic> chatData = chatDoc['users'];
 
-      // Iterate through each user document
-      for (var userDoc in usersSnapshot.docs) {
-        // Access the 'chats' subcollection under each user document
-        QuerySnapshot<Map<String, dynamic>> chatsSnapshot =
-            await userDoc.reference
-                .collection('chats') // Navigate to the 'chats' subcollection
-                .get();
-
-        // Iterate through each document in 'chats'
-        for (var chatDoc in chatsSnapshot.docs) {
-          var chatData = chatDoc.data();
-
-          // Check if the chat belongs to the current user based on 'userId'
-          if (chatDoc['userId'] != currentUserId) {
-            // Add chat details to the list
-            chats.add(ChatModel(
-              lastMessage: chatData['LastMessage'],
-              image: chatData['userPhoto'],
-              lastMessageTime: chatData['LastMessageTime'],
-              name: chatData['userName'],
-            ));
-          }
+        if (chatData[0]['userId'] == currentUserId) {
+          chats.add(ChatModel(
+              lastMessage: chatDoc['lastMessage'],
+              image: chatData[1]['userImage'],
+              userId: chatData[1]['userId'],
+              lastMessageTime: chatDoc['lastMessageTime'].toDate(),
+              name: chatData[1]['userName']));
+        } else if (chatData[1]['userId'] == currentUserId) {
+          chats.add(ChatModel(
+              lastMessage: chatDoc['lastMessage'],
+              image: chatData[0]['userImage'],
+              userId: chatData[0]['userId'],
+              lastMessageTime: chatDoc['lastMessageTime'].toDate(),
+              name: chatData[0]['userName']));
         }
       }
 

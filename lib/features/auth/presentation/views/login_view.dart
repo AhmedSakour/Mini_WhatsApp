@@ -19,7 +19,7 @@ class LoginView extends StatelessWidget {
             if (state is AuthFailure) {
               ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBar(content: Text(state.errorMessage)));
-            } else {
+            } else if (state is AuthSuccess) {
               Navigator.pushNamed(context, AppRoutes.nav);
             }
           },
