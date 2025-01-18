@@ -14,6 +14,9 @@ import 'package:whats_app/features/home/presentation/views/bottom_navigation_bar
 import 'package:whats_app/features/home/presentation/views/contacts_view.dart';
 import 'package:whats_app/features/home/presentation/views/home_view.dart';
 import 'package:whats_app/features/profile/presentation/views/profile_view.dart';
+import 'package:whats_app/features/search/data/repos/search_repo_impl.dart';
+import 'package:whats_app/features/search/presentation/view_model/search_cubit/search_cubit.dart';
+import 'package:whats_app/features/search/presentation/views/search_view.dart';
 import 'package:whats_app/features/splash/presentation/view/splash_view.dart';
 
 class AppRoutes {
@@ -23,6 +26,7 @@ class AppRoutes {
   static const nav = '/BottomNavView';
   static const appLayout = '/';
   static const splash = '/splashView';
+  static const search = '/searchView';
   static const profile = '/profileView';
   static const chat = '/chatView';
   static const contacts = '/contacts';
@@ -34,6 +38,10 @@ class AppRoutes {
       splash: (context) => const SplashView(),
       home: (context) => const HomeView(),
       nav: (context) => const BottomNavigationBarView(),
+      search: (context) => BlocProvider(
+            create: (context) => SearchCubit(getIt.get<SearchRepoImpl>()),
+            child: const SearchView(),
+          ),
       profile: (context) => const ProfileView(),
       chat: (context) => MultiBlocProvider(providers: [
             BlocProvider(
