@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:whats_app/core/constant/app_routes.dart';
 
 import '../themes/colors.dart';
 
 class CustomPopupMenuButton extends StatelessWidget {
   const CustomPopupMenuButton({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,9 @@ class CustomPopupMenuButton extends StatelessWidget {
       color: AppColor.greyColor,
       onSelected: (value) {
         if (value == 'profile') {
-          Navigator.pushNamed(context, '/profile');
+          Navigator.pushNamed(context, AppRoutes.profile);
+        } else if (value == 'new_group') {
+          Navigator.pushNamed(context, AppRoutes.group);
         }
       },
       itemBuilder: (BuildContext context) {

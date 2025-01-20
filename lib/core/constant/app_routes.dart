@@ -10,6 +10,7 @@ import 'package:whats_app/features/chat/data/repos/chat_repo/chat_repo_impl.dart
 import 'package:whats_app/features/chat/presentation/view_model/addMessage_cubit/add_message_cubit.dart';
 import 'package:whats_app/features/chat/presentation/view_model/message_cubit/messages_cubit.dart';
 import 'package:whats_app/features/chat/presentation/views/chat_view.dart';
+import 'package:whats_app/features/groups/presentation/views/group_view.dart';
 import 'package:whats_app/features/home/presentation/views/bottom_navigation_bar_view.dart';
 import 'package:whats_app/features/home/presentation/views/contacts_view.dart';
 import 'package:whats_app/features/home/presentation/views/home_view.dart';
@@ -26,6 +27,7 @@ class AppRoutes {
   static const nav = '/BottomNavView';
   static const appLayout = '/';
   static const splash = '/splashView';
+  static const group = '/groupView';
   static const search = '/searchView';
   static const profile = '/profileView';
   static const chat = '/chatView';
@@ -38,6 +40,7 @@ class AppRoutes {
       splash: (context) => const SplashView(),
       home: (context) => const HomeView(),
       nav: (context) => const BottomNavigationBarView(),
+      group: (context) => const GroupView(),
       search: (context) => BlocProvider(
             create: (context) => SearchCubit(getIt.get<SearchRepoImpl>()),
             child: const SearchView(),
