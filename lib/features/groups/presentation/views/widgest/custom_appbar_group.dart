@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:whats_app/core/themes/app_styles.dart';
 
 class CustomAppbarGroup extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppbarGroup({super.key});
+  const CustomAppbarGroup({
+    super.key,
+    required this.onPressed,
+  });
 
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -14,7 +18,7 @@ class CustomAppbarGroup extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         TextButton(
-            onPressed: () {},
+            onPressed: onPressed,
             child: Text(
               'done',
               style: AppStyles.styleMedium20(context),

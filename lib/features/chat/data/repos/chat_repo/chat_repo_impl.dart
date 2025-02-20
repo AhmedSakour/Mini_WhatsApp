@@ -12,7 +12,6 @@ class ChatRepoImpl implements ChatRepo {
     try {
       List<MessageModel> messages = [];
       String currentUserId = await UserInfoCache.getUserId();
-
       QuerySnapshot<Map<String, dynamic>> chatsSnapshot =
           await FirebaseFirestore.instance.collection('chats').get();
       for (var chatDoc in chatsSnapshot.docs) {

@@ -48,7 +48,10 @@ class HomeRepoImpl implements HomeRepo {
               .get();
       for (var chatDoc in chatsSnapshot.docs) {
         List<dynamic> chatData = chatDoc['users'];
-
+        // if (chatDoc.data().containsKey('groupId')) {
+        //   ChatModel data = getGroups(chatDoc.reference);
+        //   chats.add(data);
+        // }
         if (chatData[0]['userId'] == currentUserId) {
           chats.add(ChatModel(
               lastMessage: chatDoc['lastMessage'],
@@ -75,4 +78,8 @@ class HomeRepoImpl implements HomeRepo {
       }
     }
   }
+
+//  ChatModel getGroups(DocumentReference<Map<String, dynamic>> chatDoc) {
+//    return ChatModel(lastMessage: chatDoc['lastMessage'], image:chatDoc['groupImage'], userId: chatDoc['groupId'], lastMessageTime: chatDoc['lastMessageTime'], name: chatDoc['groupName'])
+//   }
 }
