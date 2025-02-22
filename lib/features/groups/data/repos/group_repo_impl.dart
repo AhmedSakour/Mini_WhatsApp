@@ -20,9 +20,10 @@ class GroupRepoImpl implements GroupRepo {
     try {
       await FirebaseFirestore.instance.collection('chats').add({
         'lastMessage': groupModel.lastMessage,
-        'lastMessageTime': groupModel.lastMessageTime,
+        'lastMessageTime': FieldValue.serverTimestamp(),
         'groupImage': groupModel.groupImage,
         'groupName': groupModel.groupName,
+        'groupId': groupModel.groupID,
         'users': groupModel.users
             .map((element) => {
                   'userId': element.id,

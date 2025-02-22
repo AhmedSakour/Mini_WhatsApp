@@ -1,7 +1,8 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:whats_app/features/groups/data/models/group_model.dart';
 import 'package:whats_app/features/groups/data/repos/group_repo.dart';
+import 'package:whats_app/features/home/presentation/view_model/home_cubit/home_cubit.dart';
 
 part 'group_state.dart';
 
@@ -19,7 +20,8 @@ class GroupCubit extends Cubit<GroupState> {
     return result.isEmpty;
   }
 
-  Future<void> createGroup() async {
+  Future<void> createGroup(context) async {
+    var homeCubit = BlocProvider.of<HomeCubit>(context);
     emit(CreateGroupLoading());
     if (checkUsers()) {
       emit(CreateGroupFailure('pleas select one user at lest'));
@@ -31,6 +33,7 @@ class GroupCubit extends Cubit<GroupState> {
             emit(CreateGroupFailure(l.toString()));
           },
           (r) {
+            homeCubit.getChats();
             emit(CreateGroupSuccess());
           },
         );

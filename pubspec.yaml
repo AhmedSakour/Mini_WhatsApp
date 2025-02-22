@@ -44,13 +44,14 @@ dependencies:
   google_fonts: ^4.0.4
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  intl: ^0.19.0
 
 dev_dependencies:
+  build_runner: null
   flutter_lints: ^4.0.0
-  hive_generator:
-  build_runner: 
   flutter_test:
     sdk: flutter
+  hive_generator: null
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -17,7 +17,7 @@ class ChatListViewItem extends StatelessWidget {
       children: [
         Expanded(
           child: CircleAvatar(
-            backgroundColor: Colors.grey,
+            backgroundColor: Colors.white,
             radius: 30,
             child: CachedNetworkImage(
               errorWidget: (context, url, error) {

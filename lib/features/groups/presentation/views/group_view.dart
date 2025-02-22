@@ -19,14 +19,17 @@ class GroupView extends StatelessWidget {
         appBar: CustomAppbarGroup(
           onPressed: () async {
             if (formKey.currentState!.validate()) {
-              await groupCubit.createGroup();
+              await groupCubit.createGroup(context);
             }
           },
         ),
         body: BlocListener<GroupCubit, GroupState>(
           listener: (context, state) {
             if (state is CreateGroupSuccess) {
-              Navigator.pushNamed(context, AppRoutes.nav);
+              Navigator.pushNamed(
+                context,
+                AppRoutes.nav,
+              );
             }
             if (state is CreateGroupFailure) {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
