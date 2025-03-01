@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:whats_app/core/errors/failures.dart';
@@ -11,27 +13,58 @@ class ChatRepoImpl implements ChatRepo {
   Future<Either<Failure, List<MessageModel>>> getMessages(String id) async {
     try {
       List<MessageModel> messages = [];
+      log(id);
       String currentUserId = await UserInfoCache.getUserId();
-      QuerySnapshot<Map<String, dynamic>> chatsSnapshot =
-          await FirebaseFirestore.instance.collection('chats').get();
-      for (var chatDoc in chatsSnapshot.docs) {
-        List<dynamic> chatData = chatDoc['users'];
 
-        if (chatData[0]['userId'] == currentUserId &&
-                chatData[1]['userId'] == id ||
-            chatData[1]['userId'] == currentUserId &&
-                chatData[0]['userId'] == id) {
-          var messagesSnapShots = await chatDoc.reference
-              .collection('Messages')
-              .orderBy('timeMessage', descending: true)
-              .get();
-          for (var messageDoc in messagesSnapShots.docs) {
-            messages.add(MessageModel(
-                idSender: messageDoc['SenderID'],
-                message: messageDoc['message']));
+      // Determine if the ID belongs to a group or a private chat
+      QuerySnapshot<Map<String, dynamic>> chatQuery = await FirebaseFirestore
+          .instance
+          .collection('chats')
+          .where('groupId', isEqualTo: id)
+          .get();
+
+      DocumentSnapshot<Map<String, dynamic>>? chatDoc;
+
+      if (chatQuery.docs.isNotEmpty) {
+        // It's a group chat
+        chatDoc = chatQuery.docs.first;
+      } else {
+        // It's a private chat, find chat between current user and other user
+        QuerySnapshot<Map<String, dynamic>> privateChatQuery =
+            await FirebaseFirestore.instance.collection('chats').get();
+
+        // Filter the exact private chat
+        for (var doc in privateChatQuery.docs) {
+          var users = doc.data()['users'];
+          if (!doc.data().containsKey('groupId') &&
+              ((users[0]['userId'] == currentUserId &&
+                      users[1]['userId'] == id) ||
+                  (users[1]['userId'] == currentUserId &&
+                      users[0]['userId'] == id))) {
+            chatDoc = doc;
+            break;
           }
         }
       }
+
+      if (chatDoc == null) {
+        // No matching chat found
+        return right([]);
+      }
+
+      // Fetch messages from the specific chat
+      QuerySnapshot<Map<String, dynamic>> messagesSnapshot = await chatDoc
+          .reference
+          .collection('Messages')
+          .orderBy('timeMessage', descending: true)
+          .get();
+
+      messages = messagesSnapshot.docs.map((doc) {
+        return MessageModel(
+          idSender: doc['SenderID'],
+          message: doc['message'],
+        );
+      }).toList();
 
       return right(messages);
     } catch (e) {
@@ -53,26 +86,31 @@ class ChatRepoImpl implements ChatRepo {
           await FirebaseFirestore.instance.collection('chats').get();
       for (var chatDoc in chatsSnapshot.docs) {
         List<dynamic> chatData = chatDoc['users'];
-
-        if (chatData[0]['userId'] == currentUserId &&
-                chatData[1]['userId'] == userModel.id ||
-            chatData[1]['userId'] == currentUserId &&
-                chatData[0]['userId'] == userModel.id) {
+        if (chatDoc.data().containsKey('groupId')) {
+          await addMessageInGroup(
+              chatDoc.reference, currentUserId, messageModel, userModel);
           chatExists = true;
-          await chatDoc.reference.update({
-            'lastMessage': messageModel.message,
-            'lastMessageTime': FieldValue.serverTimestamp()
-          });
-          await chatDoc.reference.collection('Messages').add({
-            'SenderID': currentUserId,
-            'message': messageModel.message,
-            'timeMessage': FieldValue.serverTimestamp(),
-          });
-          break;
+        } else {
+          if (chatData[0]['userId'] == currentUserId &&
+                  chatData[1]['userId'] == userModel.id ||
+              chatData[1]['userId'] == currentUserId &&
+                  chatData[0]['userId'] == userModel.id) {
+            chatExists = true;
+            await chatDoc.reference.update({
+              'lastMessage': messageModel.message,
+              'lastMessageTime': FieldValue.serverTimestamp()
+            });
+            await chatDoc.reference.collection('Messages').add({
+              'SenderID': currentUserId,
+              'message': messageModel.message,
+              'timeMessage': FieldValue.serverTimestamp(),
+            });
+            break;
+          }
         }
-      }
-      if (!chatExists) {
-        await createChat(userModel, messageModel.message);
+        if (!chatExists) {
+          await createChat(userModel, messageModel.message);
+        }
       }
 
       return right(null);
@@ -120,6 +158,25 @@ class ChatRepoImpl implements ChatRepo {
         return left(FirestoreFailure.fromFirestoreError(e));
       } else {
         return left(FirestoreFailure(e.toString()));
+      }
+    }
+  }
+
+  addMessageInGroup(DocumentReference<Map<String, dynamic>> chatDoc,
+      String userId, MessageModel messageModel, UserModel userModel) async {
+    DocumentSnapshot<Map<String, dynamic>> snapshot = await chatDoc.get();
+    Map<String, dynamic>? data = snapshot.data();
+    if (data != null) {
+      if (userModel.id == data['groupId']) {
+        await chatDoc.update({
+          'lastMessage': messageModel.message,
+          'lastMessageTime': FieldValue.serverTimestamp()
+        });
+        await chatDoc.collection('Messages').add({
+          'SenderID': userId,
+          'message': messageModel.message,
+          'timeMessage': FieldValue.serverTimestamp(),
+        });
       }
     }
   }
