@@ -10,8 +10,10 @@ import 'package:whats_app/features/chat/presentation/views/widgets/custom_chatMe
 import 'package:whats_app/features/home/presentation/view_model/home_cubit/home_cubit.dart';
 
 class ChatViewBody extends StatefulWidget {
-  const ChatViewBody({super.key, required this.userModel});
+  const ChatViewBody(
+      {super.key, required this.userModel, required this.isGroup});
   final UserModel userModel;
+  final bool isGroup;
 
   @override
   State<ChatViewBody> createState() => _ChatViewBodyState();
@@ -58,11 +60,13 @@ class _ChatViewBodyState extends State<ChatViewBody> {
             builder: (context, state) {
               if (state is GetMessagesSuccess) {
                 return ChatMessagesListView(
+                  isGroup: widget.isGroup,
                   userId: id!,
                   messages: messages,
                 );
               } else if (state is GetMessagesLoading) {
                 return ChatMessagesListView(
+                  isGroup: widget.isGroup,
                   userId: id ?? "",
                   messages: messagesLoading,
                 );

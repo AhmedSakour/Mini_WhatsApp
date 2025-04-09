@@ -1,13 +1,18 @@
-import 'package:flutter/material.dart';
-import 'package:whats_app/core/themes/app_styles.dart';
-import 'package:whats_app/features/chat/presentation/views/widgets/custom_triangle.dart';
 import 'dart:math' as math;
 
+import 'package:flutter/material.dart';
+import 'package:whats_app/core/themes/app_styles.dart';
+import 'package:whats_app/core/themes/colors.dart';
+import 'package:whats_app/features/chat/data/models/message_model.dart';
+import 'package:whats_app/features/chat/presentation/views/widgets/custom_triangle.dart';
+
 class ChatbubbleRecivedmessage extends StatelessWidget {
-  final String message;
+  final MessageModel message;
+  final bool isGroup;
   const ChatbubbleRecivedmessage({
     super.key,
     required this.message,
+    required this.isGroup,
   });
 
   @override
@@ -17,6 +22,27 @@ class ChatbubbleRecivedmessage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Column(
+          children: [
+            Transform.translate(
+              offset: const Offset(0, -13), //
+              child: CircleAvatar(
+                backgroundColor: AppColor.primaryColor,
+                radius: 25,
+                child: Center(
+                  child: Text(
+                    message.nameSender,
+                    style: AppStyles.styleRegular16(context)
+                        .copyWith(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(
+          width: 10,
+        ),
         Transform(
           alignment: Alignment.center,
           transform: Matrix4.rotationY(math.pi),
@@ -35,7 +61,7 @@ class ChatbubbleRecivedmessage extends StatelessWidget {
                 bottomRight: Radius.circular(18),
               ),
             ),
-            child: Text(message,
+            child: Text(message.message,
                 style: AppStyles.styleRegular16(context)
                     .copyWith(color: Colors.black)),
           ),

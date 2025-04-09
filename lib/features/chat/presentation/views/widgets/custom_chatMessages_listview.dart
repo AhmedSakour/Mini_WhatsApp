@@ -8,9 +8,11 @@ class ChatMessagesListView extends StatelessWidget {
     super.key,
     required this.messages,
     required this.userId,
+    required this.isGroup,
   });
   final List<MessageModel> messages;
   final String userId;
+  final bool isGroup;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +21,17 @@ class ChatMessagesListView extends StatelessWidget {
       reverse: true,
       itemBuilder: (context, index) {
         return messages[index].idSender == userId
-            ? ChatbubbleSendmessage(message: messages[index].message)
-            : ChatbubbleRecivedmessage(message: messages[index].message);
+            ? Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: ChatbubbleSendmessage(message: messages[index].message),
+              )
+            : Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: ChatbubbleRecivedmessage(
+                  message: messages[index],
+                  isGroup: isGroup,
+                ),
+              );
       },
     );
   }

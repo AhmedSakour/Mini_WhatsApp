@@ -47,7 +47,10 @@ class CustomChatMessageTextField extends StatelessWidget {
                         textEditingController.clear();
                         await BlocProvider.of<AddMessageCubit>(context)
                             .addMessage(
-                                MessageModel(idSender: idUser, message: value),
+                                MessageModel(
+                                    idSender: idUser,
+                                    message: value,
+                                    nameSender: userModel.name),
                                 UserModel(
                                     name: userModel.name,
                                     email: userModel.email,

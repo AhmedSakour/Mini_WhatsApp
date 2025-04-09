@@ -36,9 +36,14 @@ class ChatListViewItem extends StatelessWidget {
                 chatModel.name,
                 style: AppStyles.styleBold24(context),
               ),
-              Text(
-                chatModel.lastMessage,
-                style: AppStyles.styleMedium20(context),
+              SizedBox(
+                width: 300,
+                child: Text(
+                  chatModel.lastMessage,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  style: AppStyles.styleMedium20(context),
+                ),
               ),
             ],
           ),

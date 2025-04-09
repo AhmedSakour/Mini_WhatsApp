@@ -21,13 +21,16 @@ class ChatListView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, AppRoutes.chat,
-                    arguments: UserModel(
-                        name: chats[index].name,
-                        email: '',
-                        password: '',
-                        phone: '',
-                        id: chats[index].userId));
+                Navigator.pushNamed(
+                  context,
+                  AppRoutes.chat,
+                  arguments: UserModel(
+                      name: chats[index].name,
+                      email: '',
+                      password: '',
+                      phone: '',
+                      id: chats[index].userId),
+                );
               },
               child: ChatListViewItem(
                 chatModel: chats[index],

@@ -51,14 +51,19 @@ class AppRoutes {
             child: const SearchView(),
           ),
       profile: (context) => const ProfileView(),
-      chat: (context) => MultiBlocProvider(providers: [
-            BlocProvider(
-              create: (context) => MessagesCubit(getIt.get<ChatRepoImpl>()),
-            ),
-            BlocProvider(
-              create: (context) => AddMessageCubit(getIt.get<ChatRepoImpl>()),
-            )
-          ], child: const ChatView()),
+      chat: (context) => MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) => MessagesCubit(getIt.get<ChatRepoImpl>()),
+                ),
+                BlocProvider(
+                  create: (context) =>
+                      AddMessageCubit(getIt.get<ChatRepoImpl>()),
+                )
+              ],
+              child: const ChatView(
+                isGroup: true,
+              )),
       contacts: (context) => const ContactsView(),
     };
   }
