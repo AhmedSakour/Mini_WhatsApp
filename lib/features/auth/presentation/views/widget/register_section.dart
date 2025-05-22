@@ -1,0 +1,34 @@
+import 'package:flutter/material.dart';
+import 'package:whats_app/core/constant/app_routes.dart';
+
+import '../../../../../core/themes/app_styles.dart';
+import '../../../../../core/themes/colors.dart';
+
+class RegisterSection extends StatelessWidget {
+  const RegisterSection({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'Don\'t have an account? ',
+          style: AppStyles.styleBold24(context),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, AppRoutes.signUp);
+          },
+          child: Text(
+            'Register here',
+            style: AppStyles.styleBold24(context)
+                .copyWith(color: AppColor.primaryColor, fontSize: 18),
+          ),
+        ),
+      ],
+    );
+  }
+}
